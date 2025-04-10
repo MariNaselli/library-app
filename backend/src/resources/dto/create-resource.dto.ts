@@ -1,6 +1,12 @@
 // src/resources/dto/create-resource.dto.ts
 
-import { IsString, IsOptional, IsEnum, IsNumber, IsDateString } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsEnum,
+  IsNumber,
+  IsDateString,
+} from 'class-validator';
 import { ResourceType } from '../enums/resource-type.enum';
 
 export class CreateResourceDto {
@@ -17,8 +23,8 @@ export class CreateResourceDto {
   @IsEnum(ResourceType)
   type: ResourceType;
 
-//   @IsIn(['book', 'article', 'magazine', 'video', 'document'])
-//   type: 'book' | 'article' | 'magazine' | 'video' | 'document';
+  //   @IsIn(['book', 'article', 'magazine', 'video', 'document'])
+  //   type: 'book' | 'article' | 'magazine' | 'video' | 'document';
 
   @IsNumber()
   categoryId: number;
@@ -37,5 +43,3 @@ export class CreateResourceDto {
   // @IsNumber()
   // uploadedByUserId: number;
 }
-
-
