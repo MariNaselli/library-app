@@ -7,11 +7,11 @@ export class Resource {
     type: 'book' | 'article' | 'magazine' | 'video' | 'document'; // Tipo de recurso (obligatorio)
     categoryId: number; // Relación con la categoría temática
     fileUrl: string; // URL al archivo subido (PDF, video, etc.)
-    coverUrl?: string; // Imagen de portada opcional
-    publicationDate?: Date; // Fecha de publicación si aplica
-    uploadedByUserId: number; // Quién subió el recurso
+    //coverUrl?: string; // Imagen de portada opcional
+    //publicationDate?: Date; // Fecha de publicación si aplica
+    //uploadedByUserId: number; // Quién subió el recurso
     createdAt: Date; // Fecha de alta en la plataforma
-    updatedAt: Date; // Última modificación
+    //updatedAt: Date; // Última modificación
     isDeleted: boolean; // Campo lógico para saber si fue eliminado (0/1)
   }
 

@@ -14,9 +14,9 @@ export class ResourceService {
     const newResource: Resource = {
       id: Date.now(),
       ...createResourceDto,
-      uploadedByUserId: 1, // simulamos el ID de un usuario
+      //uploadedByUserId: 1, // simulamos el ID de un usuario
       createdAt: new Date(),
-      updatedAt: new Date(),
+      //updatedAt: new Date(),
       isDeleted: false,
     };
 
@@ -24,9 +24,11 @@ export class ResourceService {
     return newResource;
   }
 
-//   findAll(): Resource[] {
-//     return this.inMemoryResources.filter((res) => !res.isDeleted);
-//   }
+  findAll(): Resource[] {
+    return this.inMemoryResources.filter((res) => !res.isDeleted);
+  }
+  // Recorré todos los elementos (res) y devolvé solo los que no estén eliminados
+  //Buscá en la lista y devolvé los recursos que no estén marcados como eliminados
 
 //   findOne(id: number): Resource {
 //     const resource = this.inMemoryResources.find((res) => res.id === id && !res.isDeleted);

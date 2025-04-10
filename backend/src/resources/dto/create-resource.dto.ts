@@ -26,16 +26,16 @@ export class CreateResourceDto {
   @IsString()
   fileUrl: string;
 
-  @IsOptional()
-  @IsString()
-  coverUrl?: string;
+  // @IsOptional()
+  // @IsString()
+  // coverUrl?: string;
 
-  @IsOptional()
-  @IsDateString()
-  publicationDate?: Date;
+  // @IsOptional()
+  // @IsDateString()
+  // publicationDate?: Date;
 
-  @IsNumber()
-  uploadedByUserId: number;
+  // @IsNumber()
+  // uploadedByUserId: number;
 }
 
 
