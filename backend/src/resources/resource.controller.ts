@@ -24,10 +24,14 @@ export class ResourceController {
 //this.resourceService.findAll() llama al servicio, que ya hicimos arriba,
 // y le dice: Dame la lista de recursos válidos
 
-//   @Get(':id')
-//   findOne(@Param('id') id: string): Resource | undefined {
-//     return this.resourceService.findOne(Number(id));
-//   }
+  @Get(':id')
+  findOne(@Param('id') id: string): Resource {
+    return this.resourceService.findOne(Number(id));
+  }
+
+  //@Get(':id'): esta ruta captura cualquier valor después de /resources/.
+  //@Param('id'): obtiene ese valor de la URL (es un string por defecto).
+  //Number(id): lo convertimos a número, porque el id en nuestra entidad es tipo number.
 
 //   @Put(':id')
 //   update(

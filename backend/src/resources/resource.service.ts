@@ -30,13 +30,18 @@ export class ResourceService {
   // Recorré todos los elementos (res) y devolvé solo los que no estén eliminados
   //Buscá en la lista y devolvé los recursos que no estén marcados como eliminados
 
-//   findOne(id: number): Resource {
-//     const resource = this.inMemoryResources.find((res) => res.id === id && !res.isDeleted);
-//     if (!resource) {
-//       throw new NotFoundException(`Recurso con ID ${id} no encontrado.`);
-//     }
-//     return resource;
-//   }
+  findOne(id: number): Resource {
+    const resource = this.inMemoryResources.find((res) => res.id === id && !res.isDeleted);
+    if (!resource) {
+      throw new NotFoundException(`Recurso con ID ${id} no encontrado.`);
+    }
+    return resource;
+  }
+
+  //Crear una ruta para obtener un solo recurso por su id, por ejemplo:
+  //.find() busca el primer recurso con ese id que no esté eliminado.
+  //Si no lo encuentra, lanza un error 404 con un mensaje.
+  //Si sí lo encuentra, lo devuelve.
 
 //   update(id: number, updateDto: UpdateResourceDto): Resource {
 //     const resource = this.findOne(id);
