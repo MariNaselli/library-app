@@ -48,8 +48,8 @@ export class ResourceController {
 // ParseIntPipe: es un “tubo” (pipe) de NestJS que transforma y valida que el parámetro sea un número entero.
 
 
-//   @Delete(':id')
-//   remove(@Param('id') id: string): boolean {
-//     return this.resourceService.remove(Number(id));
-//   }
+@Delete(':id')
+remove(@Param('id', ParseIntPipe) id: number): boolean {
+  return this.resourceService.remove(id);
+}
 }

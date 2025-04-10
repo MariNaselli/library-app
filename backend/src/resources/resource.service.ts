@@ -72,10 +72,24 @@ export class ResourceService {
 //
 
 
-//   remove(id: number): void {
-//     const resource = this.findOne(id);
-//     resource.isDeleted = true;
-//   }
+  // remove(id: number): void {
+  //   const resource = this.findOne(id);
+  //   resource.isDeleted = true;
+  // }
+
+  remove(id: number): boolean {
+    const index = this.inMemoryResources.findIndex((r) => r.id === id);
+    //Busca en el array inMemoryResources el índice del recurso que tenga el mismo id.
+    //Usa findIndex() que recorre la lista y devuelve el índice del primer elemento que cumpla la condición.
+    if (index === -1) return false;
+    //Si no encuentra nada, devuelve -1
+    this.inMemoryResources[index].isDeleted = true;
+    //Si lo encontró, marca el recurso como eliminado lógicamente.
+    return true;
+    //Si llegó hasta acá, significa que el recurso fue marcado como eliminado, y se devuelve true
+  }
+  //Este método devuelve un boolean, o sea, true si se eliminó, false si no
+
 }
 
 //Usamos un array en memoria (this.resources) como si fuera nuestra base de datos temporal.
