@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { ResourceModule } from './resources/resource.module';
+import { ResourceModule } from './resource/resource.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -29,6 +30,8 @@ import { ResourceModule } from './resources/resource.module';
 
     // 3️⃣ Tu módulo de recursos
     ResourceModule,
+
+    CategoryModule,
   ],
 })
 export class AppModule {}
