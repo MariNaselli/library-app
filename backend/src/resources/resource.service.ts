@@ -43,18 +43,34 @@ export class ResourceService {
   //Si no lo encuentra, lanza un error 404 con un mensaje.
   //Si sí lo encuentra, lo devuelve.
 
-//   update(id: number, updateDto: UpdateResourceDto): Resource {
-//     const resource = this.findOne(id);
-//     const updated = {
-//       ...resource,
-//       ...updateDto,
-//       updatedAt: new Date(),
-//     };
+  update(id: number, updateDto: Partial<CreateResourceDto>): Resource {
+    const resource = this.findOne(id);
+    //Buscamos el recurso original que tenga ese id en la lista (ya lo implementamos antes con findOne).
+    const updated = {
+      ...resource,
+      ...updateDto,
+      updatedAt: new Date(), // actualizamos fecha
+    };
+    //Esto se llama spread operator (...) en JavaScript/TypeScript.
+    //...resource → copia todas las propiedades del recurso original (title, author, type, etc.).
+    //...updateDto → copia todos los campos nuevos que vienen del body de la petición. 
+    //Si alguno de estos campos ya existía (por ejemplo, title), lo sobrescribe.
+    //updatedAt: new Date() → agrega o reemplaza el campo updatedAt con la fecha actual.
 
-//     const index = this.inMemoryResources.findIndex((res) => res.id === id);
-//     this.inMemoryResources[index] = updated;
-//     return updated;
-//   }
+    const index = this.inMemoryResources.findIndex((res) => res.id === id);
+    //Buscamos la posición (índice) en el array inMemoryResources donde está ese recurso.
+    this.inMemoryResources[index] = updated;
+    //Reemplazamos el recurso en esa posición con la versión actualizada.
+    return updated;
+  }
+
+//Nota: usamos Partial<CreateResourceDto> para que puedan actualizar solo algunos campos (opcional).
+//Buscamos el recurso por id
+//Recibe un id (el recurso que queremos modificar).
+//Recibe updateDto, que es un objeto con los nuevos datos.
+//Partial<CreateResourceDto> significa que puede tener uno, varios o todos los campos del DTO original. Nada es obligatorio.
+//
+
 
 //   remove(id: number): void {
 //     const resource = this.findOne(id);
