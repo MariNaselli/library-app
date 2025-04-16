@@ -1,14 +1,18 @@
 // resource.entity.ts
+import { Category } from 'src/category/entities/category.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
 //@Entity() → le dice a TypeORM que esta clase representa una tabla en la base de datos.
 export class Resource {
+  [x: string]: any;
   @PrimaryGeneratedColumn()
   //@PrimaryGeneratedColumn() → crea un ID autoincremental y lo marca como clave primaria.
   id: number; // ID autoincremental (clave primaria)
@@ -37,6 +41,15 @@ export class Resource {
 
   @Column({ default: false }) //si no se le pasa valor, por defecto es false.
   isDeleted: boolean; // Campo para borrado lógico
+
+  @ManyToOne(() => Category, (category) => category.resources, { eager: true })
+  //Le decís a TypeORM: “Este recurso pertenece a UNA categoría”.
+  //category.resources se refiere a la otra parte de la relación (en Category).
+  //{ eager: true } --> Le pedís a TypeORM que te traiga automáticamente los datos de la categoría cuando consultes un recurso. O sea, no tenés que hacer otro findOne.
+  @JoinColumn({ name: 'categoryId' })
+  //Le decís: “La columna categoryId es la que usás para unir con la tabla categoría”.
+  category: Category;
+  //Es el campo que va a contener el objeto completo de la categoría asociada. Cuando pedís un recurso, además de los campos como title, también recibís category: { id, name, ... }.
 }
 
 // export class Resource {
