@@ -7,6 +7,7 @@ import {
   Put,
   Delete,
   ParseIntPipe,
+  Patch,
 } from '@nestjs/common';
 import { ResourceService } from './resource.service';
 import { CreateResourceDto } from './dto/create-resource.dto';
@@ -72,8 +73,8 @@ export class ResourceController {
   //@Param('id', ParseIntPipe) id: number --> Obtiene el id de la URL como antes, pero ahora lo convierte automáticamente en número gracias a ParseIntPipe.
   // Si alguien pone /resources/abc, NestJS da error automático: "Validation failed (numeric string is expected)".
   // ParseIntPipe: es un “tubo” (pipe) de NestJS que transforma y valida que el parámetro sea un número entero.
-  @Put(':id')
-  update(
+  @Patch(':id')
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateDto: UpdateResourceDto,
   ): Promise<Partial<Resource>> {
@@ -81,7 +82,7 @@ export class ResourceController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number): Promise<Resource> {
+  async remove(@Param('id', ParseIntPipe) id: number): Promise<Resource> {
     return this.resourceService.remove(id);
   }
 
