@@ -17,7 +17,7 @@ export class ResourceService {
   //private inMemoryResources: Resource[] = []; // Por ahora usamos un array en memoria
   constructor(
     @InjectRepository(Resource)
-    private resourceRepository: Repository<Resource>,
+    private readonly resourceRepository: Repository<Resource>,
   ) {}
   //Esto le dice a Nest que queremos trabajar con el repositorio de Resource, que es la forma en que TypeORM se conecta a la base de datos para hacer queries, inserts, updates, etc.
 
