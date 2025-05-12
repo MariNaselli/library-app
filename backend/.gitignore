@@ -1,5 +1,7 @@
 # compiled output
 /dist
+*.js
+*.js.map
 /node_modules
 /build
 
