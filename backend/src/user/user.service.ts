@@ -19,6 +19,8 @@ export class UserService {
   return { id, nombre, apellido, email, rol, isActive, createdAt };
 }
 
+  // async findByEmail(email:string):Promise<User|void>{
+  // }
   
   async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
     const emailExists = await
