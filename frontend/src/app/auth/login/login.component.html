@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg rounded-4 border-0">
+          <div class="card-body p-4">
+            <h3 class="card-title mb-4 text-center">Iniciar Sesión</h3>
+
+ <!-- ALERTA DE ERROR -->
+ <!-- <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div> -->
+
+            <form (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email "placeholder="tucorreo@ejemplo.com">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" placeholder="••••••••">
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary rounded-pill">Ingresar</button>
+              </div>
+            </form>
+            <div class="mt-3 text-center">
+              <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
