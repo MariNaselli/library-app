@@ -8,12 +8,16 @@ import {
   Delete,
   ParseIntPipe,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { ResourceService } from './resource.service';
 import { CreateResourceDto } from './dto/create-resource.dto';
 import { UpdateResourceDto } from './dto/update-resource.dto';
 import { Resource } from './entities/resource.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Public } from 'src/auth/decorators/public.decorator';
 
+@UseGuards(JwtAuthGuard)
 @Controller('resources') // Esto define la ruta base: http://localhost:3000/resources
 export class ResourceController {
   constructor(private readonly resourceService: ResourceService) {} //NestJS inyecta el servicio para que podamos usarlo en los métodos del controlador. Es como decir: "dame el servicio para poder llamarlo".
@@ -23,6 +27,7 @@ export class ResourceController {
   //   return this.resourceService.create(createResourceDto);
   // }
 
+ 
   @Post()
   async create(
     @Body() createResourceDto: CreateResourceDto,
@@ -35,6 +40,7 @@ export class ResourceController {
   //   return this.resourceService.findAll();
   // }
 
+  @Public()
   @Get()
   async findAll(): Promise<Resource[]> {
     return this.resourceService.findAll();
@@ -59,6 +65,7 @@ export class ResourceController {
   //return this.resourceService.findOne(id);
   //}
 
+  @Public()
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Resource> {
     return this.resourceService.findOne(id);
@@ -73,6 +80,7 @@ export class ResourceController {
   //@Param('id', ParseIntPipe) id: number --> Obtiene el id de la URL como antes, pero ahora lo convierte automáticamente en número gracias a ParseIntPipe.
   // Si alguien pone /resources/abc, NestJS da error automático: "Validation failed (numeric string is expected)".
   // ParseIntPipe: es un “tubo” (pipe) de NestJS que transforma y valida que el parámetro sea un número entero.
+
   @Patch(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
@@ -80,6 +88,7 @@ export class ResourceController {
   ): Promise<Partial<Resource>> {
     return this.resourceService.update(id, updateDto);
   }
+
 
   @Delete(':id')
   async remove(@Param('id', ParseIntPipe) id: number): Promise<Resource> {
